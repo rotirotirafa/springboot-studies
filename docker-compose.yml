@@ -1,0 +1,18 @@
+version: '3.8' # Especifica a versão do Docker Compose
+
+services:
+  postgres_loja: # Nome do serviço (podes escolher outro se quiseres)
+    image: postgres:latest # Define a imagem Docker a ser usada (a mais recente do Postgres)
+    container_name: lojadb_container # Nome que será dado ao container em execução
+    environment:
+      POSTGRES_USER: admin # Define o nome do superutilizador do banco de dados
+      POSTGRES_PASSWORD: admin # Define a senha para o superutilizador
+      POSTGRES_DB: lojadb # Define o nome do banco de dados a ser criado inicialmente
+    ports:
+      - "5432:5432" # Mapeia a porta 5432 do container para a porta 5432 da tua máquina
+      # Formato: <porta_host>:<porta_container>
+    volumes:
+      - postgres_data_loja:/var/lib/postgresql/data # Persiste os dados do banco de dados
+
+volumes:
+  postgres_data_loja: # Define o volume nomeado para persistência dos dados
